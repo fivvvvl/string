@@ -1,0 +1,29 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string input;
+    cout << "enter words: ";
+    getline(cin, input);
+
+    string word = "";
+
+    for (char character : input) {
+        if (character == ' ' || character == '.' || character == ',') {
+            if (!word.empty()) {
+                if (word.length() % 2 == 1) {
+                    size_t middlePos = word.length() / 2;
+                    word.erase(middlePos, 1);
+                }
+                cout << word << " ";
+                word.clear();
+            }
+        }
+        else {
+            word += character;
+        }
+    }
+
+    cout << "." << endl;
+}
