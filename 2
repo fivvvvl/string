@@ -1,0 +1,27 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string input;
+    cout << "enter words: ";
+    getline(cin, input);
+
+    string word = "";
+
+    
+    for (char character : input) {
+        if (character == ' ' || character == '.') {
+            if (!word.empty()) {
+                word.pop_back(); //видалення останньої букви
+                cout << word << " ";
+                word.clear();
+            }
+        }
+        else {
+            word += character;
+        }
+    }
+
+    cout << "." << endl;
+}
