@@ -1,0 +1,43 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+bool gol(char c) {
+    return (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u');
+}
+
+bool cherg(const string& word) {
+    if (word.length() <= 1) {
+        return false; // Слово повинно містити хоча б дві букви
+    }
+
+    for (size_t i = 0; i < word.length() - 1; ++i) {
+        if ((gol(word[i]) && gol(word[i + 1])) || (!gol(word[i]) && !gol(word[i + 1]))) {
+            return false; // Голосні букви не можуть чергуватися з голосними
+        }
+    }
+
+    return true;
+}
+
+int main() {
+    string input;
+    cout << "enter words: ";
+    getline(cin, input);
+
+    string word = "";
+
+    for (char character : input) {
+        if (character == ',' || character == '.') {
+            if (!word.empty() && cherg(word)) {
+                cout << word << " ";
+            }
+            word.clear();
+        }
+        else {
+            word += character;
+        }
+    }
+
+    cout << "." << endl;
+}
