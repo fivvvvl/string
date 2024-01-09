@@ -1,0 +1,110 @@
+Знайти у кожному рядку матриці найменший елемент і поміняти його місцями з елементом головної діагоналі
+
+
+
+
+
+
+
+
+#include <iostream>
+
+using namespace std;
+
+ 
+
+int main()
+
+{
+
+       int n;
+
+       cout << "Enter n: ";
+
+       cin >> n;
+
+ 
+
+       int** Arr;
+
+       Arr = new int* [n];
+
+       for (int i = 0; i < n; i++) Arr[i] = new int[n];
+
+ 
+
+       cout << "Matrix:" << endl;
+
+       for (int i = 0; i < n; i++) {
+
+             for (int j = 0; j < n; j++)
+
+                    cin >> Arr[i][j];
+
+       }
+
+ 
+
+       int temp, j1;
+
+       for (int i = 0; i < n; i++)
+
+       {
+
+             int min = Arr[i][0];
+
+             j1 = 0;
+
+             for (int j = 0; j < n; j++) {
+
+                    if (Arr[i][j] < min) {
+
+                           min = Arr[i][j];
+
+                           j1 = j;
+
+                    }
+
+             }
+
+             for (int j = 0; j < n; j++) {
+
+                    if (i == j) {
+
+                           temp = Arr[i][j];
+
+                           Arr[i][j] = min;
+
+                           Arr[i][j1] = temp;
+
+                    }
+
+              }
+
+       }
+
+ 
+
+       cout << "\nMatrix:" << endl;
+
+       for (int i = 0; i < n; i++) {
+
+             for (int j = 0; j < n; j++)
+
+                    cout << Arr[i][j] << " ";
+
+             cout << endl;
+
+       }
+
+ 
+
+       for (int i = 0; i < n; i++) delete[] Arr[i];
+
+       delete[] Arr;
+
+       system("pause");
+
+       return 0;
+
+}
