@@ -1,0 +1,26 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	cout << "enter a,b,h: ";
+	float a, b, h;
+	cin >> a >> b >> h;
+	float x = a;
+		float y;
+		float dob=0;
+		int sum = 0;
+
+		while (x <= b) {
+			y = (2 * cos(x)) - 1;
+			cout << "x=" << x <<"\t" << "y=" << y << endl;
+			x = x + h;
+			if (y < 0) {
+				dob += y;
+				sum++;
+			}
+		}
+		cout << "dob= " << dob << endl;
+		cout << "sum= " << sum << endl;
+}
+
