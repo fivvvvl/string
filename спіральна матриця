@@ -1,0 +1,58 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    const int MAX = 100; //  ініціалізуються змінні для керування обходом матриці
+    int n, m;
+    cout << "enter rdk: ";
+    cin >> n;
+    cout << "enter stp:";
+    cin >> m;
+
+    int matrix[MAX][MAX];
+
+    int top = 0;
+    int bottom = n - 1;
+    int left = 0;
+    int right = m - 1;
+    int value = 1;
+
+    while (top <= bottom && left <= right) {
+        // Заповнюємо верхній ряд
+        for (int i = left; i <= right; ++i)
+            matrix[top][i] = value++;
+
+        // Збільшуємо верхню границю
+        top++;
+
+        // Заповнюємо правий стовпчик
+        for (int i = top; i <= bottom; ++i)
+            matrix[i][right] = value++;
+
+        // Зменшуємо праву границю
+        right--;
+
+        // Заповнюємо нижній ряд
+        if (top <= bottom) {
+            for (int i = right; i >= left; --i)
+                matrix[bottom][i] = value++;
+            // Зменшуємо нижню границю
+            bottom--;
+        }
+
+        // Заповнюємо лівий стовпчик
+        if (left <= right) {
+            for (int i = bottom; i >= top; --i)
+                matrix[i][left] = value++;
+            // Збільшуємо ліву границю
+            left++;
+        }
+    }
+
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < m; ++j) {
+            cout << matrix[i][j] << "\t";
+        }
+        cout << endl;
+    }
+}
